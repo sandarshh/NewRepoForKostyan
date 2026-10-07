@@ -1,13 +1,13 @@
 #include <iostream>
+#include <bitset>
 #include <cmath>
 
 template <size_t N>
-std::bitset<N> to_direct_code(int number)
-{
+std::bitset<N> to_direct_code(int number) {
 
     int max_val = (1 << (N - 1)) - 1;
     if (std::abs(number) > max_val) {
-        throw std::out_of_range("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.");
+        throw std::out_of_range("Число слишком велико для данного количества бит.");
     }
 
 
@@ -26,9 +26,8 @@ int main() {
     int num2 = -5;
 
 
-    std::cout << " 5 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: " << to_direct_code<8>(num1) << std::endl;
-    std::cout << "-5 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: " << to_direct_code<8>(num2) << std::endl;
+    std::cout << " 5 в прямом коде: " << to_direct_code<8>(num1) << std::endl;
+    std::cout << "-5 в прямом коде: " << to_direct_code<8>(num2) << std::endl;
 
     return 0;
 }
-

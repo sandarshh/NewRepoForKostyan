@@ -1,48 +1,41 @@
 #include <iostream>
 #include <bitset>
-#include <string>
 
 using namespace std;
 
+// ������� ��� ������ ��������� ������������� ����� � �������������� ���� (8 ���)
+void printBinary(char n) {
+    cout << bitset<8>(n);
+}
+
 int main() {
-    string input;
-    cout << "Enter 8-bit direct code: ";
-    cin >> input;
+    int a, b;
 
-    bitset<8> directCode(input);
-    bitset<8> complementCode;
+    cout << "������� ������ ����� (��������, �� -128 �� 127): ";
+    cin >> a;
+    cout << "������� ������ �����: ";
+    cin >> b;
 
-    // ����������: ��������� ������ 7-� (����� �����) �������� ���
-    if (directCode[7] == 0) {
-        // ���� 0 � ����� �������������, ��� �� ��������
-        complementCode = directCode;
-    }
-    else {
-        // ���� 1 � ����� �������������:
+    // �������� � ���� char (8 ���) ��� ������������ ��������������� ����
+    char num1 = static_cast<char>(a);
+    char num2 = static_cast<char>(b);
+    char sum = num1 + num2;
 
-        // 1. ����������� �������� ���� (� 0 �� 6)
-        for (int i = 0; i < 7; i++) {
-            complementCode[i] = !directCode[i];
-        }
+    cout << "\n--- ������������� � �������������� ���� (8 ���) ---" << endl;
 
-        // 2. ���� ��������� �������� ��� ��������
-        complementCode[7] = 1;
+    cout << "����� " << a << " � ���. ����: ";
+    printBinary(num1);
+    cout << endl;
 
-        // 3. ���������� 1 � �������� ������� (��������� �������� � �������)
-        bool carry = true;
-        for (int i = 0; i < 7; i++) {
-            if (complementCode[i] == 1 && carry) {
-                complementCode[i] = 0;
-            } else if (complementCode[i] == 0 && carry) {
-                complementCode[i] = 1;
-                carry = false; // ������� ����������, �������
-                break;
-            }
-        }
-    }
+    cout << "����� " << b << " � ���. ����: ";
+    printBinary(num2);
+    cout << endl;
 
-    cout << "Direct code:     " << directCode << endl;
-    cout << "Complement code: " << complementCode << endl;
+    cout << "------------------------------------------" << endl;
+    cout << "����� (" << a << " + " << b << ") = " << (int)sum << endl;
+    cout << "����� � ���. ����:          ";
+    printBinary(sum);
+    cout << endl;
 
     return 0;
 }
